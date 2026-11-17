@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#6d28d9" />
+  <title>Insight Creativo | Marketing Lab</title>
+  <meta name="description" content="Herramienta para convertir contexto y Buyer Persona en un insight creativo y rutas para un flyer." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">IN</span>
+      <div>
+        <strong>Marketing Lab</strong>
+        <small>Insight creativo para flyer</small>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="exampleBtn" class="btn btn-ghost" type="button">Cargar Reset Night</button>
+      <button id="resetBtn" class="btn btn-ghost danger" type="button">Limpiar</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">MÓDULO 3 · INSIGHT CREATIVO</div>
+      <h1>Convierte lo que sabes en <span>ideas que conecten.</span></h1>
+      <p>Usa el contexto y tu Buyer Persona para descubrir qué está buscando realmente la persona y traducirlo en mensajes, emociones y rutas creativas para el flyer.</p>
+      <div class="rule"><strong>Importante:</strong> aquí construimos una hipótesis de insight. Sin validación con personas reales, no es una verdad definitiva.</div>
+    </section>
+
+    <section class="progress-card" aria-label="Progreso">
+      <div class="progress-head">
+        <span id="stepLabel">Paso 1 de 5</span>
+        <strong id="progressPct">20%</strong>
+      </div>
+      <div class="progress-track"><div id="progressBar"></div></div>
+      <div class="step-dots" id="stepDots"></div>
+    </section>
+
+    <form id="insightForm" novalidate>
+      <!-- PASO 1 -->
+      <section class="step active" data-step="1">
+        <div class="section-head">
+          <span class="step-number">01</span>
+          <div>
+            <h2>Recupera el contexto</h2>
+            <p>No vuelvas a investigar desde cero: sintetiza lo que ya descubriste.</p>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <label class="field">
+            <span>Proyecto / producto / evento</span>
+            <input id="projectName" maxlength="90" placeholder="Ej. Reset Night" />
+          </label>
+          <label class="field">
+            <span>¿Qué estamos vendiendo aparentemente?</span>
+            <input id="apparentOffer" maxlength="140" placeholder="Ej. Una fiesta universitaria" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Situación / contexto principal</span>
+          <textarea id="contextSummary" rows="4" maxlength="480" placeholder="Resume qué está ocurriendo alrededor del caso."></textarea>
+        </label>
+
+        <div class="grid two">
+          <label class="field objective">
+            <span>Objetivo del negocio</span>
+            <textarea id="businessObjective" rows="4" maxlength="320" placeholder="¿Qué resultado concreto queremos conseguir?"></textarea>
+          </label>
+          <label class="field objective">
+            <span>Objetivo de marketing / comunicación</span>
+            <textarea id="marketingObjective" rows="4" maxlength="360" placeholder="¿Qué queremos que cambie en la percepción o conducta del público?"></textarea>
+          </label>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Hallazgos contextuales</div>
+          <p class="muted">Anota las 3 ideas del contexto que más podrían influir en la decisión.</p>
+          <div id="contextFindingsList" class="repeat-list"></div>
+        </div>
+      </section>
+
+      <!-- PASO 2 -->
+      <section class="step" data-step="2">
+        <div class="section-head">
+          <span class="step-number">02</span>
+          <div>
+            <h2>Resume tu Buyer Persona</h2>
+            <p>Quédate con lo que realmente sirve para construir comunicación.</p>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <label class="field">
+            <span>Nombre / perfil</span>
+            <input id="personaName" maxlength="100" placeholder="Ej. Carlos, universitario de 21 años" />
+          </label>
+          <label class="field">
+            <span>Contexto actual</span>
+            <input id="personaContext" maxlength="180" placeholder="Ej. Está en finales, cansado y con poco presupuesto" />
+          </label>
+        </div>
+
+        <div class="grid two align-start">
+          <div class="panel">
+            <div class="panel-title heart">Qué busca</div>
+            <div id="goalsList" class="repeat-list"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title warning">Qué lo frena</div>
+            <div id="barriersList" class="repeat-list"></div>
+          </div>
+        </div>
+
+        <div class="grid two align-start lower-grid">
+          <div class="panel">
+            <div class="panel-title spark">Qué lo motiva</div>
+            <div id="motivationsList" class="repeat-list"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title gear">Cómo decide</div>
+            <div id="decisionList" class="repeat-list"></div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <label class="field">
+            <span>Canales / fuentes</span>
+            <input id="channels" maxlength="220" placeholder="Instagram, TikTok, WhatsApp, amigos..." />
+          </label>
+          <label class="field">
+            <span>Frase que resume cómo piensa</span>
+            <input id="personaQuote" maxlength="260" placeholder="“Quiero..., pero...”" />
+          </label>
+        </div>
+      </section>
+
+      <!-- PASO 3 -->
+      <section class="step" data-step="3">
+        <div class="section-head">
+          <span class="step-number">03</span>
+          <div>
+            <h2>Encuentra la tensión</h2>
+            <p>El insight aparece cuando conectas lo que quiere con lo que lo frena y el contexto que vive.</p>
+          </div>
+        </div>
+
+        <div class="tension-grid">
+          <label class="tension-card">
+            <span>Lo que compra</span>
+            <textarea id="whatBuys" rows="4" maxlength="240" placeholder="Producto, servicio o experiencia visible."></textarea>
+          </label>
+
+          <label class="tension-card featured">
+            <span>Lo que realmente podría estar buscando</span>
+            <textarea id="whatReallySeeks" rows="4" maxlength="300" placeholder="Beneficio emocional, social o simbólico."></textarea>
+          </label>
+
+          <label class="tension-card">
+            <span>Lo que quiere</span>
+            <textarea id="whatWants" rows="4" maxlength="240" placeholder="Deseo o resultado esperado."></textarea>
+          </label>
+
+          <label class="tension-card danger-card">
+            <span>Pero lo frena...</span>
+            <textarea id="whatStops" rows="4" maxlength="240" placeholder="Barrera, duda, miedo, costo, fricción..."></textarea>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Momento / detonante</span>
+          <textarea id="triggerMoment" rows="3" maxlength="300" placeholder="¿Qué está viviendo la persona cuando aparece esta necesidad o decisión?"></textarea>
+        </label>
+
+        <div class="insight-builder">
+          <div>
+            <span class="eyebrow">HIPÓTESIS DE INSIGHT</span>
+            <h3 id="generatedInsight">Completa los campos para construir tu hipótesis.</h3>
+          </div>
+          <button id="buildInsightBtn" class="btn btn-primary" type="button">Construir insight</button>
+        </div>
+
+        <label class="field">
+          <span>Insight final editable</span>
+          <textarea id="finalInsight" rows="4" maxlength="420" placeholder="Edita la hipótesis hasta que exprese una tensión humana útil para comunicar."></textarea>
+        </label>
+
+        <div class="tip">
+          <strong>Prueba rápida</strong>
+          <span>Un insight útil no dice “le gusta Instagram”. Explica por qué una persona podría actuar de cierta forma en una situación concreta.</span>
+        </div>
+      </section>
+
+      <!-- PASO 4 -->
+      <section class="step" data-step="4">
+        <div class="section-head">
+          <span class="step-number">04</span>
+          <div>
+            <h2>Define mensaje y emoción</h2>
+            <p>Decide qué debe pensar, sentir y hacer la persona al ver el flyer.</p>
+          </div>
+        </div>
+
+        <div class="grid three">
+          <label class="intent-card">
+            <span>PIENSE</span>
+            <textarea id="think" rows="4" maxlength="220" placeholder="¿Qué idea debe quedarse en su cabeza?"></textarea>
+          </label>
+          <label class="intent-card">
+            <span>SIENTA</span>
+            <select id="emotion">
+              <option value="">Elige una emoción</option>
+              <option>Recompensa</option>
+              <option>Alivio</option>
+              <option>Pertenencia</option>
+              <option>Deseo</option>
+              <option>Urgencia</option>
+              <option>Curiosidad</option>
+              <option>Confianza</option>
+              <option>Diversión</option>
+              <option>Estatus</option>
+              <option>Exclusividad</option>
+              <option>Seguridad</option>
+              <option>Nostalgia</option>
+            </select>
+            <input id="emotionCustom" maxlength="100" placeholder="O escribe otra emoción" />
+          </label>
+          <label class="intent-card">
+            <span>HAGA</span>
+            <textarea id="doAction" rows="4" maxlength="220" placeholder="Comprar, reservar, asistir, registrarse, escribir..."></textarea>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Promesa / beneficio principal</span>
+          <textarea id="mainPromise" rows="3" maxlength="300" placeholder="¿Qué le estamos prometiendo o facilitando a esta persona?"></textarea>
+        </label>
+
+        <div class="panel">
+          <div class="panel-title">Razones para creer / beneficios reales</div>
+          <p class="muted">Características o promociones que demuestran que la promesa tiene sustento.</p>
+          <div id="proofsList" class="repeat-list"></div>
+        </div>
+
+        <label class="field">
+          <span>Mensaje central</span>
+          <textarea id="centralMessage" rows="3" maxlength="280" placeholder="Ej. Sobreviviste al semestre. Ahora celébralo sin gastar de más."></textarea>
+        </label>
+      </section>
+
+      <!-- PASO 5 -->
+      <section class="step" data-step="5">
+        <div class="section-head">
+          <span class="step-number">05</span>
+          <div>
+            <h2>Genera rutas creativas para el flyer</h2>
+            <p>No hay una sola forma correcta de comunicar el insight. Explora diferentes rutas.</p>
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button id="generateIdeasBtn" class="btn btn-primary" type="button">Generar 3 rutas creativas</button>
+          <span class="muted">Las ideas son un punto de partida: puedes editarlas.</span>
+        </div>
+
+        <div class="routes-grid">
+          <article class="route-card">
+            <div class="route-tag">Ruta 1</div>
+            <label class="field">
+              <span>Enfoque</span>
+              <input id="route1Name" maxlength="100" />
+            </label>
+            <label class="field">
+              <span>Gancho / headline</span>
+              <textarea id="route1Headline" rows="3" maxlength="220"></textarea>
+            </label>
+            <label class="field">
+              <span>Dirección visual</span>
+              <textarea id="route1Visual" rows="4" maxlength="300"></textarea>
+            </label>
+            <label class="field">
+              <span>CTA</span>
+              <input id="route1Cta" maxlength="150" />
+            </label>
+          </article>
+
+          <article class="route-card">
+            <div class="route-tag">Ruta 2</div>
+            <label class="field">
+              <span>Enfoque</span>
+              <input id="route2Name" maxlength="100" />
+            </label>
+            <label class="field">
+              <span>Gancho / headline</span>
+              <textarea id="route2Headline" rows="3" maxlength="220"></textarea>
+            </label>
+            <label class="field">
+              <span>Dirección visual</span>
+              <textarea id="route2Visual" rows="4" maxlength="300"></textarea>
+            </label>
+            <label class="field">
+              <span>CTA</span>
+              <input id="route2Cta" maxlength="150" />
+            </label>
+          </article>
+
+          <article class="route-card">
+            <div class="route-tag">Ruta 3</div>
+            <label class="field">
+              <span>Enfoque</span>
+              <input id="route3Name" maxlength="100" />
+            </label>
+            <label class="field">
+              <span>Gancho / headline</span>
+              <textarea id="route3Headline" rows="3" maxlength="220"></textarea>
+            </label>
+            <label class="field">
+              <span>Dirección visual</span>
+              <textarea id="route3Visual" rows="4" maxlength="300"></textarea>
+            </label>
+            <label class="field">
+              <span>CTA</span>
+              <input id="route3Cta" maxlength="150" />
+            </label>
+          </article>
+        </div>
+
+        <label class="field selected-route">
+          <span>¿Cuál ruta elegirías y por qué?</span>
+          <textarea id="selectedRouteReason" rows="4" maxlength="380" placeholder="Justifica la ruta que mejor conecta con el Buyer Persona y el objetivo."></textarea>
+        </label>
+
+        <div class="preview-card">
+          <div>
+            <span class="eyebrow">RESULTADO</span>
+            <h3>Tu brief creativo está listo.</h3>
+            <p>Descarga el análisis de insight, mensaje y rutas para diseñar el flyer.</p>
+          </div>
+          <button id="downloadPdfBtn" class="btn btn-primary btn-large" type="button">Descargar PDF</button>
+        </div>
+        <p id="pdfStatus" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <div class="form-nav">
+        <button id="prevBtn" class="btn btn-ghost" type="button" disabled>← Anterior</button>
+        <span id="saveStatus">Guardado automático</span>
+        <button id="nextBtn" class="btn btn-primary" type="button">Siguiente →</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>Marketing Lab · Contexto → Buyer Persona → Insight → Mensaje → Flyer</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
